@@ -1,0 +1,16 @@
+Package: CoHiM
+Title: Composite null hypotheses testing under hidden Markov models
+Version: 0.0.0.9000
+Authors@R: 
+    c(person("Pengfei", "Lyu", role = c("aut", "cre", "cph"), email = "pengfei.lyu@duke.edu"),
+      person("Xianyang", "Zhang", role = c("aut")),
+      person("Hongyuan", "Cao", role = c("aut")),
+      person("Yan Li", role = "ctb"))
+Description: A robust, efficient, and computationally scalable method is developed for modeling the dependence among hypotheses through hidden Markov modelss and for testing high-dimensional composite null hypotheses with multiple studies.
+License: GPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+LazyData: true
+Depends: Rcpp (>= 1.0.9), qvalue
+LinkingTo: Rcpp, RcppArmadillo
