@@ -10,6 +10,10 @@
 #'
 #' @return A list with repLIS, fdr, and HMM parameters
 #' @export
+#' @importFrom qvalue pi0est
+#' @import qvalue
+#' @useDynLib CoHiM, .registration = TRUE
+#' @importFrom Rcpp evalCpp
 
 RepLIS <- function(pa, pb, oracle = FALSE, pi, A, f1, f2){
   

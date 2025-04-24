@@ -10,6 +10,13 @@ vec my_pava(vec &values, vec &weight, bool decreasing);
 arma::vec replis(arma::vec pi, arma::mat A, arma::vec f1, arma::vec f2);
 arma::vec fdr(arma::vec repLIS);
 
+//' EM algorithm for Hidden Markov Model
+ //' 
+ //' @param pa_in Vector of p-values from dataset A
+ //' @param pb_in Vector of p-values from dataset B
+ //' @param pi0a_in Initial estimate of pi0 for dataset A
+ //' @param pi0b_in Initial estimate of pi0 for dataset B
+ //' @return A list containing repLIS, fdr, loglik, pi, A, f1, and f2
 // [[Rcpp::export]]
 SEXP em_hmm(SEXP pa_in, SEXP pb_in, SEXP pi0a_in, SEXP pi0b_in) {
   try{
@@ -190,14 +197,6 @@ SEXP em_hmm(SEXP pa_in, SEXP pb_in, SEXP pi0a_in, SEXP pi0b_in) {
   }
 }
 
-// double non0_min(vec &p){
-//   double _min = std::numeric_limits<double>::max();
-//   
-//   p.for_each([&_min](double &val) { if(val > 0 && val < _min) _min = val; });
-//   
-//   return _min;
-// }
-
 double na_rm(vec &p){
   double _min = std::numeric_limits<double>::max();
   
@@ -206,6 +205,13 @@ double na_rm(vec &p){
   return _min;
 }
 
+//' Calculate reproducibility score using HMM parameters
+//' 
+//' @param pi Vector of initial state probabilities
+//' @param A Transition probability matrix
+//' @param f1 Vector of emission probabilities for dataset A
+//' @param f2 Vector of emission probabilities for dataset B
+//' @return Vector of reproducibility scores
 // [[Rcpp::export]]
 arma::vec replis(arma::vec pi, arma::mat A, arma::vec f1, arma::vec f2){
   int J = f1.size();
@@ -245,6 +251,11 @@ arma::vec replis(arma::vec pi, arma::mat A, arma::vec f1, arma::vec f2){
   return repLIS;
 }
 
+ 
+//' Calculate false discovery rate
+//' 
+//' @param repLIS Vector of reproducibility scores
+//' @return Vector of adjusted reproducibility scores (FDR)
 // [[Rcpp::export]]
 arma::vec fdr(arma::vec repLIS){
   int J = repLIS.size();

@@ -4,7 +4,11 @@
 #' @param null_prop_list null proportion estimation for each pair
 #' @param q FDR nominal
 #' 
-#' @return list of pairwise FDR level q_*, e-values, rejection number and decisions
+#' @return A list containing:
+#'   \item{q_star}{Optimal FDR threshold level}
+#'   \item{rej_num}{Number of rejected hypotheses}
+#'   \item{e_value}{Vector of e-values for each hypothesis}
+#'   \item{rej_index}{Logical vector indicating rejection decisions}
 #' @export
 
 min_eBH <- function(rLIS_mat, null_prop_list, q = 0.05){
@@ -13,7 +17,7 @@ min_eBH <- function(rLIS_mat, null_prop_list, q = 0.05){
   
   if(n_pair == 1){
     rLIS_sort = sort(rLIS_mat)
-    rLIS_cummean = cummean(rLIS_sort)
+    rLIS_cummean = cumsum(rLIS_sort) / seq_along(rLIS_sort)
     rej_num = sum(rLIS_cummean <= q)
     rej_threshold = rLIS_sort[rej_num]
     e_value = m*(rLIS_mat <= rej_threshold) / rLIS_cummean[rej_num]
