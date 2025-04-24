@@ -1,5 +1,7 @@
 library(tidyverse)
 library(patchwork)
+library(CoHiM)
+source("./Simu_Func.R")
 
 
 
