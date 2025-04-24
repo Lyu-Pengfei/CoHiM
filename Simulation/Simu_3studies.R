@@ -92,9 +92,6 @@ results$method <- factor(results$method, levels = methods)
 # =====================
 # 5. Visualization
 # =====================
-library(ggplot2)
-library(gridExtra)
-
 # FDR plot
 fdr_plot <- ggplot(results, aes(x = pi1, y = FDR_mean, fill = method, shape = method)) +
   geom_col(position = "dodge") +
