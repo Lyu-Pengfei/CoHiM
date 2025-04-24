@@ -16,7 +16,7 @@ J = 10000
 q = 0.05
 methods <- c("CoHiM")
 pi = rep(1/4, 4)
-n_reps <- 3
+n_reps <- 100
 
 #-------------------------------
 # 2. Result container
