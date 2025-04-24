@@ -1,4 +1,7 @@
 library(tidyverse)
+library(scales)
+library(patchwork)
+
 # processing the data ----------------------------------------------------
 data.a <- read.table("./real_data/DIAGRAM.Morris2012.males.txt", sep = "", header = TRUE)
 data.b <- read.table("./real_data/DIAGRAM.Morris2012.females.txt", sep = "", header = TRUE) # q = 1e-5
@@ -58,20 +61,4 @@ pi = res.hmm$pi_mat
 pi %>% round(3)
 res.hmm$A_list[[1]] %>% round(4)
                                           
-# Manhattan plot --------------------------------------------
-data.common = cbind(data.a[snpID, c(1:3, 9)], data.b[snpID, 9], maxp, padj.eb, padj.hmm)
-colnames(data.common)[4:8] <- c("pa", "pb", "maxp", "LIS", "rLIS")
-par(mfrow = c(1, 3))
-manhattan(data.common, chr = "CHROMOSOME", bp = "POSITION", snp = "ID", genomewideline = F,
-          col = c('grey', 'orange'), ylim = c(0, 30), cex.lab = 1.5, cex.axis = 1.5, mgp = c(2.5, 1, 0),
-          suggestiveline = -log10(thres.maxp),
-          p = 'maxp', ylab = expression(-log[10](p[max])))
-manhattan(data.common, chr = "CHROMOSOME", bp = "POSITION", snp = "ID", genomewideline = F,
-          col = c('grey', 'orange'), ylim = c(0, 30), cex.lab = 1.5, cex.axis = 1.5, mgp = c(2.5, 1, 0),
-          suggestiveline = -log10(thres.eb),
-          p = 'LIS', ylab = expression(-log[10](Lfdr)))
-manhattan(data.common, chr = "CHROMOSOME", bp = "POSITION", snp = "ID", genomewideline = F,
-          col = c('grey', 'orange'), ylim = c(0, 30),, cex.lab = 1.5, cex.axis = 1.5, mgp = c(2.5, 1, 0),
-          suggestiveline = -log10(thres.hmm),
-          p = 'rLIS', ylab = expression(-log[10](rLIS)))
 
