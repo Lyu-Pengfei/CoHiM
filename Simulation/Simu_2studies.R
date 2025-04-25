@@ -44,7 +44,7 @@ for(i in seq_len(nrow(results))) {
   method_name<- results$method[i]
   cat(sprintf("pi1 = %.3f, muA = %.1f, muB = %.1f, method = %s\n", pi1_val, muA_val, muB_val, method_name))
   
-  pi[4] = 0.1; pi[2:3] = pi1_val; pi[1] = 1 - sum(pi[2:4])
+  pi[4] = 0.05; pi[2:3] = pi1_val; pi[1] = 1 - sum(pi[2:4])
   A = trans.mat(pi)
   
   fdrs   <- numeric(n_reps)
