@@ -8,10 +8,10 @@ CoHiM provides effective control of false discovery rate and higher power for th
 
 ## Installation
 ```R
-## Install CoHiM
+## Install qvalue package
 install.packages("BiocManager")
 BiocManager::install("qvalue")
-
+## Install CoHiM
 install.packages("devtools")
 devtools::install_github("Lyu-Pengfei/CoHiM")
 
