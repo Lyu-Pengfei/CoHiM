@@ -41,7 +41,7 @@ CoHiM <- function(p_matrix, q = 0.05){
       null_prop_list[i_pair] = sum(res.hmm$pi[1:3])
     }# end for i2
   } # end for i1
-  min_eBH_result = min_eBH(rLIS_mat, null_prop_list)
+  min_eBH_result = min_eBH(rLIS_mat, null_prop_list, q = q)
   result = list(rLIS_mat = rLIS_mat, 
                 pi_mat = pi_mat, A_list =A_list,
                 f1_mat = f1_mat, f2_mat = f2_mat,
